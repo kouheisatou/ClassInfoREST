@@ -1,31 +1,27 @@
-import entity.Class
+import entity.Review
 import jakarta.ejb.Stateless
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
-import jakarta.transaction.Transactional
 import jakarta.ws.rs.GET
-import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import org.postgresql.util.PSQLException
-import values.Department
-import values.Semester
 
 @Stateless
-@Path("/class")
-class ClassResource {
+@Path("/review")
+class ReviewResource {
 
-    @PersistenceContext(unitName = "class_db")
+    @PersistenceContext
     var em: EntityManager? = null
 
     @GET
-    fun getClass(): String{
-        val c = Class("testtest", "info2", 3, Department.AF, Semester.First)
-        return createClass(c).toString()
+    fun getReviews(): String{
+        val r = Review("testtest", "review contents", 4)
+        return createClass(r).toString()
     }
 
-    fun createClass(c: entity.Class) : Boolean{
+    fun createClass(r: Review) : Boolean{
         return try{
-            em!!.persist(c)
+            em!!.persist(r)
             true
         }catch (e: PSQLException){
             false
@@ -37,6 +33,4 @@ class ClassResource {
             false
         }
     }
-
-
 }
