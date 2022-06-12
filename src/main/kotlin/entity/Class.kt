@@ -8,6 +8,7 @@ import java.io.Serializable
 @Entity
 open class Class(
     @Column(length = 8)
+    @Id
     var classCode: String,
     var name: String,
     var grade: Int,
@@ -19,23 +20,20 @@ open class Class(
 
     constructor() : this("", "", 0, Department.AF, Semester.Second) {}
 
-    @Id @GeneratedValue
-    var id: Int = 0
-
     override fun toString(): String {
-        return "Class{$id, $classCode, $name, $grade, $department, $semester}"
+        return "Class{$classCode, $name, $grade, $department, $semester}"
     }
 
     override fun equals(other: Any?): Boolean {
         if(other !is Class){
             return false
         }
-        return id == other.id
+        return classCode == other.classCode
     }
 
     override fun hashCode(): Int {
         var hash = 0
-        hash += id.hashCode()
+        hash += classCode.hashCode()
         return hash
     }
 }

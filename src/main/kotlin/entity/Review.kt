@@ -4,11 +4,11 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.ManyToOne
 import java.io.Serializable
 
 @Entity
 open class Review(
-    @Column(length = 8)
     var classCode: String,
     var content: String,
     var rate: Int
@@ -17,7 +17,7 @@ open class Review(
     constructor() : this("", "", 0) {}
 
     @Id @GeneratedValue
-    var id: Int = 0
+    var id: Long = 0
 
     override fun toString(): String {
         return "Class{$id, $classCode, $content, $rate}"

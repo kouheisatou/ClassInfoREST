@@ -3,8 +3,10 @@ import jakarta.ejb.Stateless
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.ws.rs.GET
+import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
-import org.postgresql.util.PSQLException
+import jakarta.ws.rs.PathParam
+import jakarta.ws.rs.core.Response
 
 @Stateless
 @Path("/review")
@@ -14,23 +16,23 @@ class ReviewResource {
     var em: EntityManager? = null
 
     @GET
-    fun getReviews(): String{
-        val r = Review("testtest", "review contents", 4)
-        return createClass(r).toString()
+    @Path("{classCode}")
+    fun getReview(@PathParam("classCode") classCode: String): Response{
+        val query = "select r from Review r where r.classCode = '$classCode'"
+        val result = em?.createQuery(query)?.resultList
+
+        return if(result == null || result.isEmpty()){
+            Response.status(Response.Status.NOT_FOUND).build()
+        }else{
+            Response.ok(result).build()
+        }
     }
 
-    fun createClass(r: Review) : Boolean{
-        return try{
-            em!!.persist(r)
-            true
-        }catch (e: PSQLException){
-            false
-        }catch (e: NullPointerException){
-            e.printStackTrace()
-            false
-        }catch (e: Exception){
-            e.printStackTrace()
-            false
-        }
+    @POST
+    @Path("{classCode}")
+    fun createReview(r: Review, @PathParam("classCode") classCode: String): Response {
+        r.classCode = classCode
+        em?.persist(r)
+        return Response.status(Response.Status.CREATED).build()
     }
 }
