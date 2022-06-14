@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+    <meta charset = "UTF-8">
+    <title>授業情報</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header">
+        <h1 class="heading"><a>Search Class of SIT</a></h1>
+    </header>
+    <form action="example.html">
+        <ul>
+        <li>学部<br>
+            <select name="department" required>
+                <option value="">学部を選択してください</option>
+                <option value="工学部">工学部</option>
+                <option value="システム理工学部">システム理工学部</option>
+                <option value="デザイン工学部">デザイン工学部</option>
+                <option value="建築学部">建築学部</option>
+            </select>
+        </li>
+        <li>学年<br>
+            <select name="grade" required>
+                <option value="">学年を選択してください</option>
+                <option value="1年">1年</option>
+                <option value="2年">2年</option>
+                <option value="3年">3年</option>
+                <option value="4年">4年</option>
+            </select>
+        </li>
+        <li>単位区分　<br>
+            <select name="Unit division" required>
+                <option value="">単位区分を選択してください</option>
+                <option value="必修">必修</option>
+                <option value="選択必修">選択必修</option>
+                <option value="選択">選択</option>
+                <option value="自由">自由</option>
+            </select>
+        </li>
+        <li>キャンパス<br>
+            <select name="Campas" required>
+                <option value="">キャンパスを選択してください</option>
+                <option value="大宮">大宮</option>
+                <option value="豊洲">豊洲</option>
+                <option value="芝浦">芝浦</option>
+            </select>
+        </li>
+        </ul>
+    <p><input type="submit" name="submit" value="検索" id="submit" method="post"></p>
+</form>
+</body>
+</html>
