@@ -8,6 +8,7 @@ import jakarta.ws.rs.Path
 import jakarta.ws.rs.PathParam
 import jakarta.ws.rs.QueryParam
 import jakarta.ws.rs.core.Response
+import java.sql.SQLException
 
 @Stateless
 @Path("/review")
@@ -40,6 +41,14 @@ class ReviewResource {
     ): Response {
         val r = Review(classCode, content, rate)
         em?.persist(r)
+        return Response.status(Response.Status.CREATED).build()
+    }
+
+
+    @POST
+    @Path("/post")
+    fun createClass(r: Review) : Response{
+        em!!.persist(r)
         return Response.status(Response.Status.CREATED).build()
     }
 }
