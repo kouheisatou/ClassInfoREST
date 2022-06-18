@@ -1,18 +1,9 @@
 import entity.Class
 import jakarta.ejb.Stateless
-import jakarta.ejb.TransactionAttribute
-import jakarta.ejb.TransactionAttributeType
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
-import jakarta.persistence.PersistenceException
-import jakarta.transaction.Transactional
-import jakarta.ws.rs.GET
-import jakarta.ws.rs.POST
-import jakarta.ws.rs.Path
-import jakarta.ws.rs.PathParam
+import jakarta.ws.rs.*
 import jakarta.ws.rs.core.Response
-import jakarta.ws.rs.core.Response.Status
-import org.postgresql.util.PSQLException
 import java.sql.SQLException
 
 @Stateless
@@ -23,34 +14,82 @@ class ClassResource {
     var em: EntityManager? = null
 
     @GET
-    fun getClass(): Response {
-        val jpql = "select e from Class e"
-        val list = em?.createQuery(jpql, Class::class.java)?.resultList
-        return if(list == null || list.isEmpty()){
+    @Path("/get")
+    fun getClass(
+        @QueryParam("classCode") classCode: String?,
+        @QueryParam("name") name: String?,
+        @QueryParam("grade") grade: String?,
+        @QueryParam("department") department: String?,
+        @QueryParam("semester") semester: String?
+    ): Response{
+
+        var query = "" +
+                "select c " +
+                "from Class c "
+
+        var whereUse = false
+        // クエリパラメータが指定されなかったとき，条件一致項目を全件取得
+        if (classCode != null) {
+            query += "where c.classCode = '$classCode' "
+            whereUse = true
+        }
+        if (department != null) {
+            query += if(!whereUse){
+                whereUse = true
+                " where "
+            }else{
+                " and "
+            }
+            query += "c.department = '$department'"
+        }
+        if (grade != null) {
+            query += if(!whereUse){
+                whereUse = true
+                " where "
+            }else{
+                " and "
+            }
+            query += "c.grade = '$grade'"
+        }
+        if (name != null) {
+            query += if(!whereUse){
+                whereUse = true
+                " where "
+            }else{
+                " and "
+            }
+            query += "c.name = '$name'"
+        }
+        if (semester != null) {
+            query += if(!whereUse){
+                " where "
+            }else{
+                " and "
+            }
+            query += "c.semester = '$semester'"
+        }
+
+
+        val result = em?.createQuery(query)?.resultList
+
+        return if(result == null || result.isEmpty()){
             Response.status(Response.Status.NOT_FOUND).build()
         }else{
-            Response.ok(list).build()
+            Response.ok(result).build()
         }
     }
 
     @GET
-    @Path("{classCode}")
-    fun getClass(@PathParam("classCode") classCode: String): Response {
-        val jpql = "select e from Class e where e.classCode = '$classCode'"
-        val c = em?.createQuery(jpql, entity.Class::class.java)?.resultList?.getOrNull(0)
-
-        return if(c == null){
-            Response.noContent().build()
-        }else{
-            Response.ok(c).build()
-        }
-    }
-
-    @POST
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    fun createClass(c: entity.Class) : Response{
-
+    @Path("/post")
+    fun createClass(
+        @QueryParam("classCode") classCode: String,
+        @QueryParam("name") name: String,
+        @QueryParam("grade") grade: String,
+        @QueryParam("department") department: String,
+        @QueryParam("semester") semester: String
+    ) : Response{
         return try{
+            val c = Class(classCode, name, grade.toInt(), department, semester.toInt())
             em!!.persist(c)
             Response.status(Response.Status.CREATED).build()
         }catch (e: Exception){

@@ -1,24 +1,20 @@
 package entity
 
 import jakarta.persistence.*
-import values.Department
-import values.Semester
 import java.io.Serializable
 
 @Entity
 open class Class(
-    @Column(length = 8)
-    @Id
+    @Id @Column(length = 8)
     var classCode: String,
     var name: String,
     var grade: Int,
-    @Enumerated(EnumType.STRING)
-    var department: Department,
-    @Enumerated(EnumType.STRING)
-    var semester: Semester
+    @Column(length = 2)
+    var department: String,
+    var semester: Int
 ) : Serializable {
 
-    constructor() : this("", "", 0, Department.AF, Semester.Second) {}
+    constructor() : this("", "", 0, "", 0) {}
 
     override fun toString(): String {
         return "Class{$classCode, $name, $grade, $department, $semester}"

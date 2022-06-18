@@ -18,7 +18,9 @@ class ReviewResource {
 
     @GET
     @Path("/get")
-    fun getReview(@QueryParam("classCode") classCode: String): Response{
+    fun getReview(
+        @QueryParam("classCode") classCode: String
+    ): Response{
         val query = "select r from Review r where r.classCode = '$classCode'"
         val result = em?.createQuery(query)?.resultList
 
@@ -29,9 +31,13 @@ class ReviewResource {
         }
     }
 
-    @POST
+    @GET
     @Path("/post")
-    fun createReview(@QueryParam("classCode") classCode: String, @QueryParam("content") content: String, @QueryParam("rate") rate: Int): Response {
+    fun createReview(
+        @QueryParam("classCode") classCode: String,
+        @QueryParam("content") content: String,
+        @QueryParam("rate") rate: Int
+    ): Response {
         val r = Review(classCode, content, rate)
         em?.persist(r)
         return Response.status(Response.Status.CREATED).build()
