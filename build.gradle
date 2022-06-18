@@ -38,7 +38,7 @@ allOpen {
 
 
 dependencies {
-    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0')
+    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1')
     compileOnly('jakarta.ws.rs:jakarta.ws.rs-api:3.1.0')
     compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
     compileOnly 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
@@ -47,6 +47,10 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    implementation("com.onelogin:java-saml:2.9.0")
+    // servlet
+    implementation('javax.servlet:javax.servlet-api:4.0.1')
 }
 
 test {

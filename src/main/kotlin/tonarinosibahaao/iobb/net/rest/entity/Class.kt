@@ -1,4 +1,4 @@
-package entity
+package tonarinosibahaao.iobb.net.rest.entity
 
 import jakarta.persistence.*
 import java.io.Serializable

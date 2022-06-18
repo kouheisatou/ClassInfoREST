@@ -1,7 +1,7 @@
-import entity.Class
+package tonarinosibahaao.iobb.net.rest
+
+import tonarinosibahaao.iobb.net.rest.entity.Class
 import jakarta.ejb.Stateless
-import jakarta.ejb.TransactionAttribute
-import jakarta.ejb.TransactionAttributeType
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.ws.rs.*
@@ -109,7 +109,7 @@ class ClassResource {
 
     @POST
     @Path("/post")
-    fun createClass(c: entity.Class) : Response {
+    fun createClass(c: Class) : Response {
         em!!.persist(c)
         return Response.status(Response.Status.CREATED).build()
     }

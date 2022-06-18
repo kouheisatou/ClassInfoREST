@@ -1,4 +1,4 @@
-package entity
+package tonarinosibahaao.iobb.net.rest.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

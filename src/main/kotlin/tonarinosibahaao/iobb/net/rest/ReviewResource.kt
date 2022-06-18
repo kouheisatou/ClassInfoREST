@@ -1,4 +1,6 @@
-import entity.Review
+package tonarinosibahaao.iobb.net.rest
+
+import tonarinosibahaao.iobb.net.rest.entity.Review
 import jakarta.ejb.Stateless
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
