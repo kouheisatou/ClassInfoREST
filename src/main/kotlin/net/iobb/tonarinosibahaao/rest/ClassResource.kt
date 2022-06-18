@@ -1,6 +1,6 @@
-package tonarinosibahaao.iobb.net.rest
+package net.iobb.tonarinosibahaao.rest
 
-import tonarinosibahaao.iobb.net.rest.entity.Class
+import net.iobb.tonarinosibahaao.rest.entity.Class
 import jakarta.ejb.Stateless
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext

@@ -1,10 +1,8 @@
-package tonarinosibahaao.iobb.net.rest.entity
+package net.iobb.tonarinosibahaao.rest.entity
 
-import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
-import jakarta.persistence.ManyToOne
 import java.io.Serializable
 
 @Entity

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <welcome-file-list>
+        <welcome-file>/search/search.html</welcome-file>
+    </welcome-file-list>
+
+<!--    <servlet>-->
+<!--        <servlet-name>Faces Servlet</servlet-name>-->
+<!--        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>Faces Servlet</servlet-name>-->
+<!--        <url-pattern>/faces/*</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+    <servlet-mapping>
+        <servlet-name>SamlRequest</servlet-name>
+        <url-pattern>/SamlRequest</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SamlRequest</servlet-name>
+        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SamlResponse</servlet-name>
+        <url-pattern>/SamlResponse</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SamlResponse</servlet-name>
+        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlResponseServlet</servlet-class>
+    </servlet>
+
+    <!-- ========== Security Constraint =========================== -->
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>protected-resource</web-resource-name>
+            <url-pattern>/class-info/class/post/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- ========== Login Config ================================== -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>UseridOnlyAuthRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/Login.html</form-login-page>
+            <form-error-page>/error/LoginError.html</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <error-page>
+        <exception-type>javax.security.auth.login.LoginException</exception-type>
+        <location>/error/LoginError.html</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/error/Unauthenticated.html</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/error/Unauthenticated.html</location>
+    </error-page>
+
+    <!-- ========== Security Role ================================= -->
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+    </session-config>
+</web-app>

@@ -1,4 +1,4 @@
-package tonarinosibahaao.iobb.net.auth.common;
+package net.iobb.tonarinosibahaao.auth.common;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -22,15 +22,30 @@ public class EncryptManagerClient {
         return new String(Base64.getEncoder().encode(cipher.doFinal(source.getBytes())));
     }
 
+    public static String decrypt(String encryptSource, String key, String algorithm) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        Cipher cipher = Cipher.getInstance(algorithm);
+        cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.getBytes(), algorithm));
+        return new String(cipher.doFinal(Base64.getDecoder().decode(encryptSource.getBytes())));
+    }
+
     public static String encryptElement(String element) {
         try {
             String encryptedElement = EncryptManagerClient.encrypt(element, KEY, ALGORITHM);
             return encryptedElement;
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-            System.out.println(e.getMessage());
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
             return null;
         }
     }
+
+    public static String decryptElement(String element) {
+        try {
+            String decryptedElement = EncryptManagerClient.decrypt(element, KEY, ALGORITHM);
+            return decryptedElement;
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
+            return null;
+        }
+    }
+
 
     static public String addTimeStamp(String encryptedUsername){
         final String timestamp = new Timestamp(new Date().getTime()).toString();
@@ -42,3 +57,4 @@ public class EncryptManagerClient {
         return EncryptManagerClient.encryptElement(addTimeStamp(username));
     }
 }
+

@@ -1,16 +1,14 @@
-package tonarinosibahaao.iobb.net.rest
+package net.iobb.tonarinosibahaao.rest
 
-import tonarinosibahaao.iobb.net.rest.entity.Review
+import net.iobb.tonarinosibahaao.rest.entity.Review
 import jakarta.ejb.Stateless
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
-import jakarta.ws.rs.PathParam
 import jakarta.ws.rs.QueryParam
 import jakarta.ws.rs.core.Response
-import java.sql.SQLException
 
 @Stateless
 @Path("/review")
