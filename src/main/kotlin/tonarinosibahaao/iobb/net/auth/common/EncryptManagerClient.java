@@ -22,13 +22,6 @@ public class EncryptManagerClient {
         return new String(Base64.getEncoder().encode(cipher.doFinal(source.getBytes())));
     }
 
-    /* TalonAuthでは復号はしないので不要 */
-    // public static String decrypt(String encryptSource, String key, String algorithm) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IllegalArgumentException {
-    //     Cipher cipher = Cipher.getInstance(algorithm);
-    //     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.getBytes(), algorithm));
-    //     return new String(cipher.doFinal(Base64.getDecoder().decode(encryptSource.getBytes())));
-    // }
-
     public static String encryptElement(String element) {
         try {
             String encryptedElement = EncryptManagerClient.encrypt(element, KEY, ALGORITHM);
@@ -38,21 +31,6 @@ public class EncryptManagerClient {
             return null;
         }
     }
-
-    /* TalonAuthでは復号はしないので不要 */
-    // public static String decryptElement(String element) {
-    //     try {
-    //         String decryptedElement = EncryptManager.decrypt(element, KEY, ALGORITHM);
-    //         return decryptedElement;
-    //     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-    //         System.out.println(e.getMessage());
-    //         return null;
-    //     } catch (IllegalArgumentException e) {
-    //         System.out.println(e.getMessage());
-    //         return null;
-    //     }
-    // }
-
 
     static public String addTimeStamp(String encryptedUsername){
         final String timestamp = new Timestamp(new Date().getTime()).toString();
