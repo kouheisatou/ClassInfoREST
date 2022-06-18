@@ -38,21 +38,17 @@ allOpen {
 
 
 dependencies {
-    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1')
-    compileOnly('jakarta.ws.rs:jakarta.ws.rs-api:3.1.0')
-//    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
+//    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1')
+//    compileOnly('jakarta.ws.rs:jakarta.ws.rs-api:3.1.0')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
     compileOnly 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
     implementation 'org.postgresql:postgresql:42.4.0'
 
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+//    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
-    implementation("com.onelogin:java-saml:2.9.0")
-    // servlet
-    // implementationだと動かないが、compileOnlyだと動く
-    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
-    compileOnly("javax.faces:javax.faces-api:2.3")
+    implementation files("lib/OneloginJavaSAMLToolkit-JakartaEdition.jar")
 }
 
 test {

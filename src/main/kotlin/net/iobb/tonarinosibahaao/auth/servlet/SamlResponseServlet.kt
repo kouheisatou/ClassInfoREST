@@ -2,13 +2,12 @@ package net.iobb.tonarinosibahaao.auth.servlet
 
 import com.onelogin.saml2.Auth
 import net.iobb.tonarinosibahaao.auth.common.EncryptManagerClient
-import org.apache.commons.lang3.StringUtils
 import java.io.IOException
 import javax.security.auth.login.LoginException
-import javax.servlet.ServletException
-import javax.servlet.http.HttpServlet
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.ServletException
+import jakarta.servlet.http.HttpServlet
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 
 class SamlResponseServlet : HttpServlet() {
 
@@ -16,7 +15,6 @@ class SamlResponseServlet : HttpServlet() {
     private var username: String? = null
     private var encryptedUsername: String? = null
 
-    @Throws(ServletException::class, IOException::class)
     override fun doPost(req: HttpServletRequest, resp: HttpServletResponse) {
         try {
             username = validate(req, resp)
@@ -30,7 +28,6 @@ class SamlResponseServlet : HttpServlet() {
         }
     }
 
-    @Throws(IOException::class, ServletException::class, LoginException::class)
     private fun validate(req: HttpServletRequest, resp: HttpServletResponse): String? {
         var auth: Auth? = null
         try {
@@ -44,7 +41,6 @@ class SamlResponseServlet : HttpServlet() {
         }
         val errors = auth.errors
         return if (errors.isNotEmpty()) {
-            println(StringUtils.join(errors, ", "))
             if (auth.isDebugActive) {
                 val errorReason = auth.lastErrorReason
                 if (errorReason != null && !errorReason.isEmpty()) {
