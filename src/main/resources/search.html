@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+    <meta charset = "UTF-8">
+    <title>授業情報</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="heading"><a>Search Class of SIT</a></h1>
+    </header>
+    <form action="examplt.html" method="post" id="form"><!--送りたいサーバーのURL？-->
+        <input type="text" name="classname">
+        <input type="submit" value="検索">
+        <ul>
+        <li><label for="department-field">学部・学科</label><br>
+            <select name="department" required id="department-field">
+                <option value="">学部・学科を選択してください</option>
+                <option value="機械工学科">工学部・機械工学科</option>
+                <option value="機械機能工学科">工学部・機械機能工学科</option>
+                <option value="材料工学科">工学部・材料工学科</option>
+                <option value="応用科学科">工学部・応用科学科</option>
+                <option value="電気工学科">工学部・電気工学科</option>
+                <option value="電子工学科">工学部・電子工学科</option>
+                <option value="情報通信工学科">工学部・情報通信工学科</option>
+                <option value="情報工学科">工学部・情報工学科</option>
+                <option value="土木工学科">工学部・土木工学科</option>
+                <option value="先進国際課程">工学部・先進国際課程</option>
+                <option value="国際プログラム学科">システム理工学部・国際プログラム学科</option>
+                <option value="電子情報システム学科">システム理工学部・電子情報システム学科</option>
+                <option value="機械制御システム学科">システム理工学部・機械制御システム学科</option>
+                <option value="環境システム学科">システム理工学部・環境システム学科</option>
+                <option value="生命科学科-生命科学コース">システム理工学部・生命科学科-生命科学コース</option>
+                <option value="生命科学科-生命医工学コース">システム理工学部・生命科学科-生命医工学コース</option>
+                <option value="数理科学科">システム理工学部・数理科学科</option>
+                <option value="デザイン工学科　生産・プロダクトデザイン系">デザイン工学部・デザイン工学科　生産・プロダクトデザイン系</option>
+                <option value="デザイン工学科　ロボティクス・情報デザイン系">デザイン工学部・デザイン工学科　ロボティクス・情報デザイン系</option>
+                <option value="建築学科">建築学科</option>
+            </select>
+        </li>
+        <li><label for="grade">学年</label><br>
+            <select name="grade" required id="grade">
+                <option value="">学年を選択してください</option>
+                <option value="1年">1年</option>
+                <option value="2年">2年</option>
+                <option value="3年">3年</option>
+                <option value="4年">4年</option>
+            </select>
+        </li>
+        <li><label for="Unit-division">単位区分</label><br>
+            <select name="Unit-division" required id="Unit-division">
+                <option value="">単位区分を選択してください</option>
+                <option value="必修">必修</option>
+                <option value="選択必修">選択必修</option>
+                <option value="選択">選択</option>
+                <option value="自由">自由</option>
+            </select>
+        </li>
+        <li><label for="Campas">キャンパス</label><br>
+            <select name="Campas" required id="Campas">
+                <option value="">キャンパスを選択してください</option>
+                <option value="大宮">大宮</option>
+                <option value="豊洲">豊洲</option>
+                <option value="芝浦">芝浦</option>
+            </select>
+        </li>
+        </ul>
+    <input type="submit" value="検索">
+</form>
+<p id="output"></p>
+<script src="script.js"></script>
+<script>
+    'use strict'
+    console.log('kohe')
+</script>
+</body>
+</html>
