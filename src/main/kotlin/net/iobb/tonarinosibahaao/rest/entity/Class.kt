@@ -1,6 +1,6 @@
 package net.iobb.tonarinosibahaao.rest.entity
 
-import jakarta.persistence.*
+import javax.persistence.*
 import java.io.Serializable
 
 @Entity

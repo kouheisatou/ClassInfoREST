@@ -2,10 +2,10 @@ package net.iobb.tonarinosibahaao.rest
 
 import net.iobb.tonarinosibahaao.rest.entity.Class
 import jakarta.ejb.Stateless
-import jakarta.persistence.EntityManager
-import jakarta.persistence.PersistenceContext
-import jakarta.ws.rs.*
-import jakarta.ws.rs.core.Response
+import javax.persistence.EntityManager
+import javax.persistence.PersistenceContext
+import javax.ws.rs.*
+import javax.ws.rs.core.Response
 import java.sql.SQLException
 
 @Stateless
