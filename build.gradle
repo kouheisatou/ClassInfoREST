@@ -43,15 +43,15 @@ dependencies {
     // jakarta-ee
 //    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
     compileOnly 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
-    implementation 'org.postgresql:postgresql:42.4.0'
+//    implementation 'org.postgresql:postgresql:42.4.0'
 
 //    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
 //    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
     // java saml toolkit
-//    implementation files("lib/OneloginJavaSAMLToolkit-JakartaEdition.jar")
-    implementation "com.onelogin:java-saml:2.9.0"
-    compileOnly("javax.servlet:javax.servlet-api:4.0.1")
+    implementation files("lib/OneloginJavaSAMLToolkit-JakartaEdition-signed.jar")
+//    implementation "com.onelogin:java-saml:2.9.0"
+//    compileOnly("javax.servlet:javax.servlet-api:4.0.1")
 }
 
 test {
