@@ -8,14 +8,6 @@ import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 
 class SamlRequestServlet : HttpServlet(){
-    override fun doPost(req: HttpServletRequest?, resp: HttpServletResponse?) {
-        try {
-            val auth = Auth(req, resp)
-            auth.login()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
 
     override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse) {
         try {
@@ -29,5 +21,9 @@ class SamlRequestServlet : HttpServlet(){
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+        val auth = Auth(req, resp)
+        auth.login()
+
     }
 }

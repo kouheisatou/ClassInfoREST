@@ -18,8 +18,8 @@ ext {
     junitVersion = '5.8.2'
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -40,15 +40,17 @@ allOpen {
 dependencies {
 //    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1')
 //    compileOnly('jakarta.ws.rs:jakarta.ws.rs-api:3.1.0')
+    // jakarta-ee
     compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
     compileOnly 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
     implementation 'org.postgresql:postgresql:42.4.0'
 
-
 //    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
 //    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
+    // java saml toolkit
     implementation files("lib/OneloginJavaSAMLToolkit-JakartaEdition.jar")
+//    implementation "com.onelogin:java-saml:2.9.0"
 }
 
 test {
