@@ -3,9 +3,12 @@ package net.iobb.tonarinosibahaao.auth.servlet
 import com.onelogin.saml2.Auth
 import java.io.Writer
 
-import jakarta.servlet.http.HttpServlet
-import jakarta.servlet.http.HttpServletRequest
-import jakarta.servlet.http.HttpServletResponse
+//import jakarta.servlet.http.HttpServlet
+//import jakarta.servlet.http.HttpServletRequest
+//import jakarta.servlet.http.HttpServletResponse
+import javax.servlet.http.HttpServlet
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 class SamlRequestServlet : HttpServlet(){
 
