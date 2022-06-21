@@ -18,10 +18,10 @@
     <form action="https://tonarinosibahaao.iobb.net:8181/ClassInfo/rest/class/get/" id="form"><!--actionの値を書く授業の情報が入っているURLに対応させる必要がある（今は仮)-->
         <p>授業名<br>
         <input type="text" name="name" id="name">
-        <input type="button" value="削除" onclick="deleteText()"></p>
+        <input type="button" value="削除" onclick="deleteText('name')" id="nameDelete"></p>
         <p>授業コード<br>
         <input type="text" name="classCode" id="classCode" maxlength="8">
-        <input type="button" value="削除"></p>
+        <input type="button" value="削除" onclick="deleteText('classCode')" id="classCodeDelete"></p>
         
         <p><label for="department_field">学部・学科</label><br>
             <select name="department"  id="department_field">
