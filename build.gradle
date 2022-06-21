@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.5.31'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0'
     id 'org.jetbrains.kotlin.plugin.allopen' version '1.5.31'
     id 'war'
 }
@@ -54,8 +54,12 @@ dependencies {
 
     // java saml toolkit
 //    implementation files("lib/OneloginJavaSAMLToolkit-JakartaEdition-signed.jar")
-    implementation "com.onelogin:java-saml:2.9.0"
-    compileOnly("javax.servlet:javax.servlet-api:4.0.1")
+//    implementation "com.onelogin:java-saml:2.9.0"
+//    compileOnly("javax.servlet:javax.servlet-api:4.0.1")
+
+    // SAML SSO Login servlets
+    // 手動で/domain/libにコピーする
+//    implementation(files("lib/SAMLSSOLogin.jar"))
 }
 
 test {
