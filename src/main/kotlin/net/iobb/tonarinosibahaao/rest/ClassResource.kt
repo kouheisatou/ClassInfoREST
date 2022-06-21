@@ -28,13 +28,13 @@ class ClassResource {
     ): Response{
 
         var query = "select c from Class c "
-        query += appendQuery(query, "classCode", classCode)
-        query += appendQuery(query, "name", name)
-        query += appendQuery(query, "grade", grade)
-        query += appendQuery(query, "department", department)
-        query += appendQuery(query, "semester", semester)
-        query += appendQuery(query, "campus", campus)
-        query += appendQuery(query, "unitDivision", unitDivision)
+        query = appendQuery(query, "classCode", classCode)
+        query = appendQuery(query, "name", name)
+        query = appendQuery(query, "grade", grade)
+        query = appendQuery(query, "department", department)
+        query = appendQuery(query, "semester", semester)
+        query = appendQuery(query, "campus", campus)
+        query = appendQuery(query, "unitDivision", unitDivision)
 
         val result = em?.createQuery(query)?.resultList
 
@@ -57,7 +57,7 @@ class ClassResource {
         }else{
             " where "
         }
-        newQuery += " c.$queryParamKey=$queryParamValue"
+        newQuery += " c.$queryParamKey='$queryParamValue'"
         return newQuery
     }
 
