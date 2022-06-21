@@ -64,11 +64,6 @@ document.getElementById('campas').onchange = function(){
 }
 
 function search(){
-
-    // urlDict['name'] = document.getElementById('name').value
-    // urlDict['classCode'] = document.getElementById('classCode').value
-
-    
     //検索フォームに入力した内容とプルダウンの情報を含んだurlListをhtmlのhrefに代入する
     for(let key in urlDict){
         if(urlDict[key]==""){
@@ -78,7 +73,7 @@ function search(){
 
     let count=0;
     let URL='';
-    let link="https://tonarinosibahaao.iobb.net:8181/ClassInfoREST/class/get/?";
+    let link="https://tonarinosibahaao.iobb.net:8181/ClassInfo/rest/class/get/?";
     for(let key in urlDict){
         URL+=(key+"="+urlDict[key]);
         if(count==Object.keys(urlDict).length-1)break;
@@ -88,11 +83,9 @@ function search(){
     link+=URL;
     console.log(URL);
     location.href=link;
-    // location.replace(URL);
     console.log('検索がクリックされました')
 }
 
-document.getElementById('form').onsubmit = function() {
-    
-
+function deleteText(){
+    document.getElementById('name').textContent='';
 }
