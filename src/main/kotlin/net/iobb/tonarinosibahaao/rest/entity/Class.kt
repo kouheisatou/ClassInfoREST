@@ -9,15 +9,16 @@ open class Class(
     var classCode: String,
     var name: String,
     var grade: Int,
-    @Column(length = 2)
     var department: String,
-    var semester: Int
+    var semester: String,
+    var campus: String,
+    var unitDivision: String
 ) : Serializable {
 
-    constructor() : this("", "", 0, "", 0) {}
+    constructor() : this("", "", 0, "", "", "", "") {}
 
     override fun toString(): String {
-        return "Class{$classCode, $name, $grade, $department, $semester}"
+        return "Class{$classCode, $name, $grade, $department, $semester, $campus, $unitDivision}"
     }
 
     override fun equals(other: Any?): Boolean {

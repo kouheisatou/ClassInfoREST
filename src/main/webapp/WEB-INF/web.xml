@@ -17,29 +17,30 @@
 <!--        <url-pattern>/faces/*</url-pattern>-->
 <!--    </servlet-mapping>-->
 
-    <servlet-mapping>
-        <servlet-name>SamlRequest</servlet-name>
-        <url-pattern>/SamlRequest</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>SamlRequest</servlet-name>
-        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlRequestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SamlResponse</servlet-name>
-        <url-pattern>/SamlResponse</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>SamlResponse</servlet-name>
-        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlResponseServlet</servlet-class>
-    </servlet>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>SamlRequest</servlet-name>-->
+<!--        <url-pattern>/SamlRequest</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>SamlRequest</servlet-name>-->
+<!--        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlRequestServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>SamlResponse</servlet-name>-->
+<!--        <url-pattern>/SamlResponse</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>SamlResponse</servlet-name>-->
+<!--        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlResponseServlet</servlet-class>-->
+<!--    </servlet>-->
 
     <!-- ========== Security Constraint =========================== -->
 
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>protected-resource</web-resource-name>
-            <url-pattern>/class-info/class/post/*</url-pattern>
+            <url-pattern>/class/post/*</url-pattern>
+            <url-pattern>/review/post/*</url-pattern>
             <http-method>POST</http-method>
             <http-method>GET</http-method>
         </web-resource-collection>

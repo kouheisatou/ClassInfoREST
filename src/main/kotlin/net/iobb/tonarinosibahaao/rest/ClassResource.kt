@@ -22,55 +22,19 @@ class ClassResource {
         @QueryParam("name") name: String?,
         @QueryParam("grade") grade: String?,
         @QueryParam("department") department: String?,
-        @QueryParam("semester") semester: String?
+        @QueryParam("semester") semester: String?,
+        @QueryParam("campus") campus: String?,
+        @QueryParam("unitDivision") unitDivision: String?
     ): Response{
 
-        var query = "" +
-                "select c " +
-                "from Class c "
-
-        var whereUse = false
-        // クエリパラメータが指定されなかったとき，条件一致項目を全件取得
-        if (classCode != null) {
-            query += "where c.classCode = '$classCode' "
-            whereUse = true
-        }
-        if (department != null) {
-            query += if(!whereUse){
-                whereUse = true
-                " where "
-            }else{
-                " and "
-            }
-            query += "c.department = '$department'"
-        }
-        if (grade != null) {
-            query += if(!whereUse){
-                whereUse = true
-                " where "
-            }else{
-                " and "
-            }
-            query += "c.grade = '$grade'"
-        }
-        if (name != null) {
-            query += if(!whereUse){
-                whereUse = true
-                " where "
-            }else{
-                " and "
-            }
-            query += "c.name = '$name'"
-        }
-        if (semester != null) {
-            query += if(!whereUse){
-                " where "
-            }else{
-                " and "
-            }
-            query += "c.semester = '$semester'"
-        }
-
+        var query = "select c from Class c "
+        query += appendQuery(query, "classCode", classCode)
+        query += appendQuery(query, "name", name)
+        query += appendQuery(query, "grade", grade)
+        query += appendQuery(query, "department", department)
+        query += appendQuery(query, "semester", semester)
+        query += appendQuery(query, "campus", campus)
+        query += appendQuery(query, "unitDivision", unitDivision)
 
         val result = em?.createQuery(query)?.resultList
 
@@ -81,17 +45,35 @@ class ClassResource {
         }
     }
 
+    fun appendQuery(query: String, queryParamKey: String, queryParamValue: String?): String{
+
+        if(queryParamValue == null || queryParamValue == ""){
+            return query
+        }
+
+        var newQuery = query
+        newQuery += if(query.contains("where")){
+            " and "
+        }else{
+            " where "
+        }
+        newQuery += " c.$queryParamKey=$queryParamValue"
+        return newQuery
+    }
+
     @GET
     @Path("/post")
     fun createClass(
-        @QueryParam("classCode") classCode: String,
-        @QueryParam("name") name: String,
-        @QueryParam("grade") grade: String,
-        @QueryParam("department") department: String,
-        @QueryParam("semester") semester: String
+        @QueryParam("classCode") classCode: String?,
+        @QueryParam("name") name: String?,
+        @QueryParam("grade") grade: String?,
+        @QueryParam("department") department: String?,
+        @QueryParam("semester") semester: String?,
+        @QueryParam("campus") campus: String?,
+        @QueryParam("unitDivision") unitDivision: String?
     ) : Response{
         return try{
-            val c = Class(classCode, name, grade.toInt(), department, semester.toInt())
+            val c = Class(classCode!!, name!!, grade!!.toInt(), department!!, semester!!, campus!!, unitDivision!!)
             em!!.persist(c)
             Response.status(Response.Status.CREATED).build()
         }catch (e: Exception){
