@@ -14,12 +14,16 @@
     <header class="header">
         <h1 class="heading"><a>Search Class of SIT</a></h1>
     </header>
-    <form action="../classinfo/classinfo.html" id="form"><!--actionの値を書く授業の情報が入っているURLに対応させる必要がある（今は仮）-->
-        <input type="text" name="classname" maxlength="8">
+    <!--<form action = "#" id="form">-->
+    <form action="https://tonarinosibahaao.iobb.net:8181/ClassInfoREST/class-info/class/get/" id="form">actionの値を書く授業の情報が入っているURLに対応させる必要がある（今は仮)
+
+        <input type="text" name="name">
+        <input type="submit" value="検索"><br>
+        <input type="text" name="classCode"  maxlength="8">
         <input type="submit" value="検索">
         <ul>
         <li><label for="department_field">学部・学科</label><br>
-            <select name="department" required id="department_field">
+            <select name="department"  id="department_field">
                 <option value="">学部・学科を選択してください</option>
                 <option value="工学部・機械工学科">工学部・機械工学科</option>
                 <option value="工学部・機械機能工学科">工学部・機械機能工学科</option>
@@ -44,16 +48,16 @@
             </select>
         </li>
         <li><label for="grade">学年</label><br>
-            <select name="grade" required id="grade">
+            <select name="grade"  id="grade">
                 <option value="">学年を選択してください</option>
-                <option value="1年">1年</option>
-                <option value="2年">2年</option>
-                <option value="3年">3年</option>
-                <option value="4年">4年</option>
+                <option value="1">1年</option>
+                <option value="2">2年</option>
+                <option value="3">3年</option>
+                <option value="4">4年</option>
             </select>
         </li>
-        <li><label for="Unit_division">単位区分</label><br>
-            <select name="Unit_division" required id="Unit-division">
+        <li><label for="unitDivision">単位区分</label><br>
+            <select name="unitDivision"  id="unitDivision">
                 <option value="">単位区分を選択してください</option>
                 <option value="必修">必修</option>
                 <option value="選択必修">選択必修</option>
@@ -61,8 +65,17 @@
                 <option value="自由">自由</option>
             </select>
         </li>
-        <li><label for="Campas">キャンパス</label><br>
-            <select name="Campas" required id="Campas">
+
+        <li><label for="semester">学期</label><br>
+            <select name="semester"  id="semester">
+                <option value="">学期を選択してください</option>
+                <option value="1">前期</option>
+                <option value="2">後期</option>
+            </select>
+        </li>
+
+        <li><label for="campas">キャンパス</label><br>
+            <select name="campas"  id="campas">
                 <option value="">キャンパスを選択してください</option>
                 <option value="大宮">大宮</option>
                 <option value="豊洲">豊洲</option>
@@ -70,7 +83,9 @@
             </select>
         </li>
         </ul>
-    <input type="submit" value="検索">
+    <!-- <input type="submit" value="検索"> -->
+
+    <input type="button" onclick="search()">
 </form>
 <p id="output"></p>
 <script src="script.js"></script>
