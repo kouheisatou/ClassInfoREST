@@ -86,6 +86,8 @@ function search(){
     console.log('検索がクリックされました')
 }
 
-function deleteText(){
-    document.getElementById('name').textContent='';
+function deleteText(id){
+    document.getElementById(id).value='';
 }
+
+
