@@ -8,13 +8,6 @@
     </security-role-mapping>
 
     <class-loader delegate="true"/>
-    <jsp-config>
-        <property name="keepgenerated" value="true">
-            <description>Keep a copy of the generated servlet class java code.</description>
-        </property>
-        <property name="modificationTestInterval" value="1"/>
-        <property name="verbose" value="true"/>
-    </jsp-config>
 
     <parameter-encoding default-charset="UTF-8" />
 

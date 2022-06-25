@@ -73,7 +73,7 @@ function search(){
 
     let count=0;
     let URL='';
-    let link="https://tonarinosibahaao.iobb.net:8181/ClassInfo/rest/class/get/?";
+    let link="https://" + window.location.host + "/ClassInfo/rest/class/get/?";
     for(let key in urlDict){
         URL+=(key+"="+urlDict[key]);
         if(count==Object.keys(urlDict).length-1)break;

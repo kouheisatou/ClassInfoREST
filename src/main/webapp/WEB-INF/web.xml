@@ -7,33 +7,6 @@
         <welcome-file>/search.html</welcome-file>
     </welcome-file-list>
 
-<!--    <servlet>-->
-<!--        <servlet-name>Faces Servlet</servlet-name>-->
-<!--        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>-->
-<!--        <load-on-startup>1</load-on-startup>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>Faces Servlet</servlet-name>-->
-<!--        <url-pattern>/faces/*</url-pattern>-->
-<!--    </servlet-mapping>-->
-
-    <servlet-mapping>
-        <servlet-name>SamlRequest</servlet-name>
-        <url-pattern>/SamlRequest</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>SamlRequest</servlet-name>
-        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlRequestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SamlResponse</servlet-name>
-        <url-pattern>/SamlResponse</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>SamlResponse</servlet-name>
-        <servlet-class>net.iobb.tonarinosibahaao.auth.servlet.SamlResponseServlet</servlet-class>
-    </servlet>
-
     <!-- ========== Security Constraint =========================== -->
 
     <security-constraint>
@@ -51,7 +24,7 @@
 
     <!-- ========== Login Config ================================== -->
     <login-config>
-        <auth-method>FROM</auth-method>
+        <auth-method>FORM</auth-method>
         <realm-name>UseridOnlyAuthRealm</realm-name>
         <form-login-config>
             <form-login-page>/Login.html</form-login-page>
