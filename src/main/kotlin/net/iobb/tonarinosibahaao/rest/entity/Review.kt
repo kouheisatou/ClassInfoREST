@@ -8,7 +8,6 @@ import java.io.Serializable
 @Entity
 open class Review(
     var classCode: String,
-//    @ type=text
     var content: String,
     var rate: Int
 ) : Serializable {

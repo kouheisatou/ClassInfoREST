@@ -1,29 +1,13 @@
 package net.iobb.tonarinosibahaao.rest.scraping
 
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
+import java.io.*
 
 fun main() {
-    scraping("src/main/resources/scraping_setting.txt", true)
+    val departmentInfoList = loadFromText("src/main/resources/scraping_setting.txt")
+    scraping(departmentInfoList, true)
 }
 
-fun scraping(settingFilePath: String, output: Boolean) {
-    val departmentList = mutableListOf<DepartmentInfo>()
-
-    val file = File(settingFilePath)
-    val fr = FileReader(file)
-    val br = BufferedReader(fr)
-
-    for(line in br.lines()){
-        if(line == "") continue
-        try {
-            val element = line.split(",")
-            departmentList += DepartmentInfo(element[0], element[1], element[2])
-        }catch (e: java.lang.Exception){
-            e.printStackTrace()
-        }
-    }
+fun scraping(departmentList: List<DepartmentInfo>, output: Boolean): List<DepartmentInfo> {
 
     for(d in departmentList){
         d.getClasses()
@@ -32,4 +16,36 @@ fun scraping(settingFilePath: String, output: Boolean) {
         }
         Thread.sleep(1000)
     }
+    return departmentList
+}
+
+fun loadFromText(textFilePath: String): List<DepartmentInfo>{
+
+    val file = File(textFilePath)
+    val fr = FileReader(file)
+    val br = BufferedReader(fr)
+
+    return loadFromBufferedReader(br)
+}
+
+fun loadFromInputStream(inputStream: InputStream): List<DepartmentInfo>{
+    val inputStreamReader = InputStreamReader(inputStream)
+    val br = BufferedReader(inputStreamReader)
+
+    return loadFromBufferedReader(br)
+}
+
+fun loadFromBufferedReader(bufferedReader: BufferedReader): List<DepartmentInfo>{
+    val departmentList = mutableListOf<DepartmentInfo>()
+
+    for(line in bufferedReader.lines()){
+        if(line == "") continue
+        try {
+            val element = line.split(",")
+            departmentList += DepartmentInfo(element[0], element[1], element[2])
+        }catch (e: java.lang.Exception){
+            e.printStackTrace()
+        }
+    }
+    return departmentList
 }

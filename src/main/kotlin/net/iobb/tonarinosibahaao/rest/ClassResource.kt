@@ -6,11 +6,10 @@ import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.Response
-import net.iobb.tonarinosibahaao.rest.scraping.DepartmentInfo
+import net.iobb.tonarinosibahaao.rest.scraping.loadFromInputStream
 import net.iobb.tonarinosibahaao.rest.scraping.scraping
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
+import java.io.IOException
+import java.io.InputStreamReader
 import java.sql.SQLException
 
 @Stateless
@@ -96,8 +95,17 @@ class ClassResource {
 
     @GET
     @Path("/post/scraping")
-    fun startScraping(){
-        scraping("scraping_setting.txt", false)
+    fun startScraping() : Response{
+        print("current_path = " + this.javaClass.protectionDomain.codeSource.location)
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("scraping_setting.txt") ?: throw IOException("scraping_setting.txt is not found")
+        val departmentInfoList = loadFromInputStream(inputStream)
+        scraping(departmentInfoList, false)
+        for(d in departmentInfoList){
+            for(c in d.classes){
+                createClass(c)
+            }
+        }
+        return getClass(null, null, null, null, null, null, null)
     }
 
     @POST

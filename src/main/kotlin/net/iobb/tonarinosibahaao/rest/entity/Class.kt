@@ -5,7 +5,7 @@ import java.io.Serializable
 
 @Entity
 open class Class(
-    @Id @Column(length = 8)
+    @Column(length = 8)
     var classCode: String,
     var name: String,
     var grade: Int,
@@ -15,10 +15,13 @@ open class Class(
     var unitDivision: String
 ) : Serializable {
 
+    @Id @GeneratedValue
+    var id: Long = 0
+
     constructor() : this("", "", 0, "", "", "", "") {}
 
     override fun toString(): String {
-        return "Class{$classCode, $name, $grade, $department, $semester, $campus, $unitDivision}"
+        return "Class{$id, $classCode, $name, $grade, $department, $semester, $campus, $unitDivision}"
     }
 
     override fun equals(other: Any?): Boolean {
