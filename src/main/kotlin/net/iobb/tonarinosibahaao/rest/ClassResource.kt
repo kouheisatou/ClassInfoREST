@@ -6,6 +6,11 @@ import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.Response
+import net.iobb.tonarinosibahaao.rest.scraping.DepartmentInfo
+import net.iobb.tonarinosibahaao.rest.scraping.scraping
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
 import java.sql.SQLException
 
 @Stateless
@@ -87,6 +92,12 @@ class ClassResource {
                 }
             }
         }
+    }
+
+    @GET
+    @Path("/post/scraping")
+    fun startScraping(){
+        scraping("scraping_setting.txt", false)
     }
 
     @POST

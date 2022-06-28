@@ -5,9 +5,13 @@ import java.io.File
 import java.io.FileReader
 
 fun main() {
+    scraping("src/main/resources/scraping_setting.txt", true)
+}
+
+fun scraping(settingFilePath: String, output: Boolean) {
     val departmentList = mutableListOf<DepartmentInfo>()
 
-    val file = File("src/main/resources/scraping_setting.txt")
+    val file = File(settingFilePath)
     val fr = FileReader(file)
     val br = BufferedReader(fr)
 
@@ -23,7 +27,9 @@ fun main() {
 
     for(d in departmentList){
         d.getClasses()
-        d.outputClassesToFile()
+        if(output){
+            d.outputClassesToFile()
+        }
         Thread.sleep(1000)
     }
 }
